@@ -201,7 +201,23 @@
 
     <!-- ESSAY SECTION -->
     <div class="essay-container">
-        <p>Obama  said the best career advice he ever gives is simple: "just learn how to get stuff done." <a href="https://www.youtube.com/watch?v=YNY4UFaHbP4">Watch theYoutube Clip</a> </p>
+        <p>Obama  said the best career advice he ever gives is simple: "just learn how to get stuff done." <a href="#" onclick="toggleVideo(event)">▶ Play YouTube Clip</a> </p>
+        
+        <div id="video-container" style="display: none; margin-bottom: 1.5rem; text-align: center;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/23Jmxi2jtbM?start=727" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <script>
+            function toggleVideo(e) {
+                e.preventDefault();
+                const container = document.getElementById('video-container');
+                if (container.style.display === 'none') {
+                    container.style.display = 'block';
+                } else {
+                    container.style.display = 'none';
+                }
+            }
+        </script>
 
         <p>Getting stuff done – Execution – is what these notes are about.</p>
         
@@ -228,14 +244,14 @@
                         "Vision without execution is just a hallucination" – Tomas Edison, or Steve Jobs, or someone else smart
                     </blockquote>
 
-                    <p>Execution is <b>skill of getting things done well with others</b> in messy, real-world team settings. The "with others" is critical. Getting things dome in a team environment means dependencies on other people and groups delivering – and almost everyone is working on multiple things at once. This is what sets the art of execution apart from productivity hacks like how to organize to-do lists, manage calendars, and avoid procrastination.</p>
+                    <p>Execution is <b>the skill of getting things done well with others</b> in messy, real-world team settings. The "with others" is critical. Getting things done in a team environment means dependencies on other people and groups delivering – and almost everyone is working on multiple things at once. This is what sets the art of execution apart from productivity hacks like how to organize to-do lists, manage calendars, and avoid procrastination.</p>
 
                     <h3>The Benefits of Execution</h3>
 
                     <p style="margin-top: 30px;">When teams execute well:</p>
                     <ul style="margin-left: 2rem; margin-bottom: 30px;">
                         <li><b>You get results.</b> Obviously!</li>
-                        <li><b>Team members are happier.</b> The best days at work are when meaningful things done (and people get recognized for it). Most people hate moving too slowly!</li>
+                        <li><b>Team members are happier.</b> The best days at work are when meaningful things get done (and people get recognized for it). Most people hate moving too slowly!</li>
                         <li><b>You actually learn.</b> Learning happens from doing, not planning to do.</li>
                         <li><b>Users & customers benefit.</b> Things ship. Problems are fixed.</li>
                     </ul>
@@ -244,11 +260,11 @@
 
                     <h3>The Anti-Execution Feedback Loop</h3>
                     
-                    <p style="margin-top: 30px;">Poor execution results in the inverse of good execution (failure to deliver results, unhappy colleagues, lack of learning, and frustrated customers). But interestingly, that's not all... <b>Poor execution environments create a negative feedback loops, resulting in even worse execution:</b></p>
+                    <p style="margin-top: 30px;">Poor execution results in the inverse of good execution (failure to deliver results, unhappy colleagues, lack of learning, and frustrated customers). But interestingly, that's not all... <b>Poor execution environments create negative feedback loops, resulting in even worse execution:</b></p>
 
                     <ul style="margin-left: 2rem; margin-bottom: 30px;">
                         <li><b>People take on too many projects.</b> This is because any single project goes too slowly or has a high chance of failure, so it's in everyone's interest to keep multiple irons in the fire. But this spreads people too thin and reduces their stake in each product right.</li>
-                        <li><b>People lower their standards.</b> If people can't stuff done easily they lower their standards to just to get anything done. This encourages peers to do the same, since everyone acknowledges it's nearly impossible to get great stuff done.</li>
+                        <li><b>People lower their standards.</b> If people can't get stuff done easily they lower their standards to just to get anything done. This encourages peers to do the same, since everyone acknowledges it's nearly impossible to get great stuff done.</li>
                         <li><b>Progress is marked by showing plans, not results.</b> And leadership rewards this.</li>
                         <li><b>Good people leave.</b> Because they want to get good stuff done and learn by doing so. Brain drain itself discourages good people from staying!</li>
                     </ul>
@@ -262,7 +278,7 @@
     <div class="notecards-container">
         
         <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 1rem;">
-            <h3>Tenants of Execution</h3>
+            <h3>Tenets of Execution</h3>
             <div style="font-size: 1rem; color: #333; font-style: normal; margin-top: 0.5rem; font-weight: normal;">A collection of notes & thoughts on how to execute well.</div>
         </div>
 
@@ -316,7 +332,7 @@
 
         <!-- Card 6 -->
         <div class="notecard">
-            <h2>Know the long pole(s) (& attach them too)</h2>
+            <h2>Know the long pole(s) (& attack them too)</h2>
             <div class="notecard-content">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
