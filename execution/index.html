@@ -3,10 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Execution - Garen Checkley</title>
+    <title>Garen's Notes on Execution</title>
+    <style>
+        /* 
+           DESIGN INTENT FOR FUTURE LLMs:
+           - Maintain visual consistency with the homepage (fonts, background colors).
+           - Keep it simple: clean typography, minimal layout.
+           - "Essay" section: Center-aligned block, left-aligned text, easy to read width.
+           - "Notecards" section: Visually distinct cards that look like physical index cards.
+             - Red underline for titles.
+             - Blue ruled lines for body text.
+             - Slight drop shadow for depth.
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f9f9e8;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #333333;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #555;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        /* Centered container for the essay */
+        .essay-container {
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            text-align: left;
+        }
+        
+        .essay-container p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Container for the notecards grid */
+        .notecards-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        /* 
+           Notecard Visual Style 
+           - White background
+           - Drop shadow
+           - Ruled lines effect
+        */
+        .notecard {
+            background-color: #fff;
+            padding: 1.5rem;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            position: relative;
+            /* Optional: Add a subtle paper texture or line height matching the background lines */
+        }
+
+        .notecard h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid #ff6b6b; /* Red underline for title */
+            color: #222;
+        }
+
+        .notecard-content {
+            /* Creating the blue lined paper effect using repeating linear gradient */
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 29px,
+                #cce4f7 30px
+            );
+            background-size: 100% 30px; /* Line height */
+            line-height: 30px; /* Match the line height to the gradient */
+            padding-top: 2px; /* Slight offset to align text on lines */
+        }
+
+        /* Collapsible section styles */
+        .collapsible-container {
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .collapsible-trigger {
+            cursor: pointer;
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .collapsible-trigger:hover {
+            color: #999;
+        }
+        
+        .collapsible-arrow {
+            display: inline-block;
+            transition: transform 0.2s;
+            margin-right: 0.5rem;
+        }
+
+        .collapsible-content {
+            /* Notecard style applied to the big section */
+            background-color: #fff;
+            padding: 2rem;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            
+            /* Lined paper effect */
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 29px,
+                #e5eff7 30px
+            );
+            background-size: 100% 30px;
+            line-height: 30px;
+            
+            /* Hidden by default state handled by JS/details element */
+        }
+        
+        .collapsible-content h3 {
+            margin-top: 0; 
+            margin-bottom: 0;
+            font-size: 1.3rem;
+            line-height: 30px;
+            display: inline-block;
+        }
+
+        .collapsible-content p {
+             margin-bottom: 30px; /* One line skip */
+             background-color: transparent;
+             line-height: 30px;
+        }
+
+        .collapsible-content ul {
+             margin-bottom: 30px;
+             margin-left: 2rem;
+             line-height: 30px;
+        }
+
+        .collapsible-content li {
+            margin-bottom: 15px; /* Half line - likely needs 30px to perfectly align or will drift */
+            margin-bottom: 0; /* Let's try 0 and rely on line-height */
+        }
+        
+        .collapsible-content blockquote {
+             margin: 30px 0;
+             padding-left: 1rem;
+             border-left: 4px solid #ccc;
+             line-height: 30px;
+        }
+
+        /* Override default details marker */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        details[open] .collapsible-arrow {
+            transform: rotate(90deg);
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Hello World</h1>
+
+    <h1>Notes on Execution</h1>
+    <div class="subtitle">On the skill of getting stuff done</div>
+
+    <!-- ESSAY SECTION -->
+    <div class="essay-container">
+        <p>Obama  said the best career advice he ever gives is simple: "just learn how to get stuff done." <a href="https://www.youtube.com/watch?v=YNY4UFaHbP4">Watch theYoutube Clip</a> </p>
+
+        <p>Getting stuff done – Execution – is what these notes are about.</p>
+        
+        <h3>3 top-level insights:</h3>
+
+        <ol style="margin-left: 2rem; margin-bottom: 1.5rem; margin-top: 1.5rem;">
+            <li style="margin-bottom: 0.5rem;"><b>Getting stuff done is an exceptionally valuable skill.</b> Even Obama said it!</li>
+            <li style="margin-bottom: 0.5rem;"><b>Execution is a learnable skill and we should all spend more time learning it.</b> You can probably name three strategy books/writings, but can you name one on Execution? Exactly!</li>
+            <li style="margin-bottom: 0.5rem;"><b>Great organizations have an execution culture.</b> Organizations that execute well have norms and expectations that enable and demand good execution. The opposite is true too!</li>
+        </ol>
+
+        <p>After having led a few complex projects at work and read a few Execution-focused books outside of work, here are my notes. This is mostly a documentation of personal insights, but I'd be eager to hear if any of it is useful to others: I'm at <a href="mailto:GarenCheckley@gmail.com">GarenCheckley@gmail.com</a>.</p>
+
+        <div class="collapsible-container">
+            <details open>
+                <summary class="collapsible-trigger">
+                    <span class="collapsible-arrow">▶</span> The Basics
+                </summary>
+                
+                <div class="collapsible-content">
+                    <h3>What is Execution</h3>
+                    
+                    <blockquote style="border-left: 4px solid #ccc; margin: 30px 0; padding-left: 1rem; font-style: italic; color: #555;">
+                        "Vision without execution is just a hallucination" – Tomas Edison, or Steve Jobs, or someone else smart
+                    </blockquote>
+
+                    <p>Execution is <b>skill of getting things done well with others</b> in messy, real-world team settings. The "with others" is critical. Getting things dome in a team environment means dependencies on other people and groups delivering – and almost everyone is working on multiple things at once. This is what sets the art of execution apart from productivity hacks like how to organize to-do lists, manage calendars, and avoid procrastination.</p>
+
+                    <h3>The Benefits of Execution</h3>
+
+                    <p style="margin-top: 30px;">When teams execute well:</p>
+                    <ul style="margin-left: 2rem; margin-bottom: 30px;">
+                        <li><b>You get results.</b> Obviously!</li>
+                        <li><b>Team members are happier.</b> The best days at work are when meaningful things done (and people get recognized for it). Most people hate moving too slowly!</li>
+                        <li><b>You actually learn.</b> Learning happens from doing, not planning to do.</li>
+                        <li><b>Users & customers benefit.</b> Things ship. Problems are fixed.</li>
+                    </ul>
+
+                    <p>The above ends up creating positive feedback loops – business results compound, happy colleagues make work happier, learning unlocks more learning, and satisfied customers stick around & tell their friends.</p>
+
+                    <h3>The Anti-Execution Feedback Loop</h3>
+                    
+                    <p style="margin-top: 30px;">Poor execution results in the inverse of good execution (failure to deliver results, unhappy colleagues, lack of learning, and frustrated customers). But interestingly, that's not all... <b>Poor execution environments create a negative feedback loops, resulting in even worse execution:</b></p>
+
+                    <ul style="margin-left: 2rem; margin-bottom: 30px;">
+                        <li><b>People take on too many projects.</b> This is because any single project goes too slowly or has a high chance of failure, so it's in everyone's interest to keep multiple irons in the fire. But this spreads people too thin and reduces their stake in each product right.</li>
+                        <li><b>People lower their standards.</b> If people can't stuff done easily they lower their standards to just to get anything done. This encourages peers to do the same, since everyone acknowledges it's nearly impossible to get great stuff done.</li>
+                        <li><b>Progress is marked by showing plans, not results.</b> And leadership rewards this.</li>
+                        <li><b>Good people leave.</b> Because they want to get good stuff done and learn by doing so. Brain drain itself discourages good people from staying!</li>
+                    </ul>
+                    
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <!-- NOTECARDS SECTION -->
+    <div class="notecards-container">
+        
+        <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 1rem;">
+            <h3>Tenants of Execution</h3>
+            <div style="font-size: 1rem; color: #333; font-style: normal; margin-top: 0.5rem; font-weight: normal;">A collection of notes & thoughts on how to execute well.</div>
+        </div>
+
+        <!-- Card 1 -->
+        <div class="notecard">
+            <h2>Know the goal (& evangelize it)</h2>
+            <div class="notecard-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="notecard">
+            <h2>Have a plan (& with workstreams, milestones, dependencies)</h2>
+            <div class="notecard-content">
+                <p>Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque.</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="notecard">
+            <h2>Milestones can be accurate or make things happen faster (but rarely both)</h2>
+            <div class="notecard-content">
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="notecard">
+            <h2>Know the dependencies (& their dependencies)</h2>
+            <div class="notecard-content">
+                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.</p>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="notecard">
+            <h2>Reduce thy dependencies</h2>
+            <div class="notecard-content">
+                <p>Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat.</p>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="notecard">
+            <h2>Know the bottlenecks (& attack them)</h2>
+            <div class="notecard-content">
+                <p>Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci.</p>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="notecard">
+            <h2>Know the long pole(s) (& attach them too)</h2>
+            <div class="notecard-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="notecard">
+            <h2>Prioritize, prioritize, prioritize</h2>
+            <div class="notecard-content">
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="notecard">
+            <h2>Have clear owners (& empower them)</h2>
+            <div class="notecard-content">
+                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.</p>
+            </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="notecard">
+            <h2>Get into the details (the fine line between respect & micromanagement)</h2>
+            <div class="notecard-content">
+                <p>Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat.</p>
+            </div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="notecard">
+            <h2>You can't delegate execution</h2>
+            <div class="notecard-content">
+                <p>Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci.</p>
+            </div>
+        </div>
+
+        <!-- Card 11 -->
+        <div class="notecard">
+            <h2>Not everyone is going to be happy</h2>
+            <div class="notecard-content">
+                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.</p>
+            </div>
+        </div>
+
+        <!-- Card 12 -->
+        <div class="notecard">
+            <h2>Passion is necessary but not sufficient</h2>
+            <div class="notecard-content">
+                <p>Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat.</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
-
